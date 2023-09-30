@@ -15,6 +15,7 @@ namespace QuanLyDuLich.Models
             Comment = new HashSet<Comment>();
             Order_details = new HashSet<Order_details>();
             Tour_image = new HashSet<Tour_image>();
+            TourManagement = new HashSet<TourManagement>();
         }
 
         [Key]
@@ -55,5 +56,8 @@ namespace QuanLyDuLich.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour_image> Tour_image { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TourManagement> TourManagement { get; set; }
     }
 }
