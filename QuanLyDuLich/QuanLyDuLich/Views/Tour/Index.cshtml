@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="breadcrumbs-custom-inset">
+    <div class="breadcrumbs-custom context-dark bg-overlay-60">
+        <div class="container">
+            <h2 class="breadcrumbs-custom-title">Typography</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Typography</li>
+            </ul>
+        </div>
+        <div class="box-position" style="background-image: url(images/breadcrumbs-bg.jpg);"></div>
+    </div>
+</section>
+
+<div style="margin-top: 70px; margin-bottom: 70px" class="container">
+    <div class="box-categories cta-box-wrap">
+        <div class="box-categories-content">
+            <div class="row justify-content-center">
+                <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
+                    <ul class="list-marked-2 box-categories-list">
+                        <li>
+                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Asset/images/cta-1-368x420.jpg" alt="" width="368" height="420" /></a>
+                            <h5 class="box-categories-title">Balloon Flights</h5>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
+                    <ul class="list-marked-2 box-categories-list">
+                        <li>
+                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Asset/images/cta-2-368x420.jpg" alt="" width="368" height="420" /></a>
+                            <h5 class="box-categories-title">Mountain Holiday</h5>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
+                    <ul class="list-marked-2 box-categories-list">
+                        <li>
+                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Asset/images/cta-3-368x420.jpg" alt="" width="368" height="420" /></a>
+                            <h5 class="box-categories-title">Beach Holidays</h5>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><a class="link-classic wow fadeInUp" href="#">Other Tours<span></span></a>
+    <!-- Owl Carousel-->
+</div>
+
+
+

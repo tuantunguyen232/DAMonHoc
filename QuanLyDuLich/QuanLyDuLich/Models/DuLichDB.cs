@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace QuanLyDuLich.Models
 {
-    public partial class Model1 : DbContext
+    public partial class DuLichDB : DbContext
     {
-        public Model1()
+        public DuLichDB()
             : base("name=DuLichDB")
         {
         }
@@ -19,8 +19,10 @@ namespace QuanLyDuLich.Models
         public virtual DbSet<News_image> News_image { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Order_details> Order_details { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
         public virtual DbSet<Tour_image> Tour_image { get; set; }
+        public virtual DbSet<TourManagement> TourManagement { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -119,6 +121,18 @@ namespace QuanLyDuLich.Models
 
             modelBuilder.Entity<Tour_image>()
                 .Property(e => e.id_tour)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TourManagement>()
+                .Property(e => e.id_tour_manamegement)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TourManagement>()
+                .Property(e => e.id_tour)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TourManagement>()
+                .Property(e => e.id_user)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()

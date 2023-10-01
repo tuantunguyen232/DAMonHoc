@@ -16,6 +16,7 @@ namespace QuanLyDuLich.Models
             Like_action = new HashSet<Like_action>();
             News_comment = new HashSet<News_comment>();
             Order = new HashSet<Order>();
+            TourManagement = new HashSet<TourManagement>();
         }
 
         [Key]
@@ -56,5 +57,8 @@ namespace QuanLyDuLich.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TourManagement> TourManagement { get; set; }
     }
 }
