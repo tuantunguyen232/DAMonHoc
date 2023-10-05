@@ -7,13 +7,48 @@
 <section class="breadcrumbs-custom-inset">
     <div class="breadcrumbs-custom context-dark bg-overlay-60">
         <div class="container">
-            <h2 class="breadcrumbs-custom-title">Typography</h2>
+            <h2 class="breadcrumbs-custom-title">Choose your favorite tour</h2>
             <ul class="breadcrumbs-custom-path">
                 <li><a href="index.html">Home</a></li>
-                <li class="active">Typography</li>
+                <li class="active">Tour</li>
             </ul>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h6 style="">Điểm đi</h6>
+                        <select class="form-select form-control mb-3" aria-label="Select location 1" placeholder="">
+                            <option selected>Chọn điểm đi</option>
+                            <option value="location1">Location 1</option>
+                            <option value="location2">Location 2</option>
+                            <option value="location3">Location 3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 style="">Điểm đến</h6>
+                        <select class="form-select form-control mb-3" aria-label="Select location 2" placeholder="Điểm đến">
+                            <option selected>Điểm đến</option>
+                            <option value="location1">Location 1</option>
+                            <option value="location2">Location 2</option>
+                            <option value="location3">Location 3</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 style="">Ngày khởi hành</h6>
+                        <input type="date" class="form-control mb-3" id="datepicker" placeholder="Ngày tháng đi">
+                    </div>
+                    <div class="col-md-2">
+                        <h6 style="">Số ngày đi</h6>
+                        <input type="number" class="form-control mb-3" placeholder="Số ngày đi">
+                    </div>
+                    <div class="col-md-1"  style="padding-top: 22px">
+                        <button class="btn btn-primary btn-block">
+                            <i class="icon fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box-position" style="background-image: url(images/breadcrumbs-bg.jpg);"></div>
+        <div class="box-position" style="background-image: url(/Assets/images/wallhaven-7pl713_1920x500.png);"></div>
     </div>
 </section>
 
@@ -24,7 +59,7 @@
                 <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                     <ul class="list-marked-2 box-categories-list">
                         <li>
-                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Asset/images/cta-1-368x420.jpg" alt="" width="368" height="420" /></a>
+                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Assets/images/cta-1-368x420.jpg" alt="" width="368" height="420" /></a>
                             <h5 class="box-categories-title">Balloon Flights</h5>
                         </li>
                     </ul>
@@ -32,7 +67,7 @@
                 <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                     <ul class="list-marked-2 box-categories-list">
                         <li>
-                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Asset/images/cta-2-368x420.jpg" alt="" width="368" height="420" /></a>
+                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Assets/images/cta-2-368x420.jpg" alt="" width="368" height="420" /></a>
                             <h5 class="box-categories-title">Mountain Holiday</h5>
                         </li>
                     </ul>
@@ -40,14 +75,14 @@
                 <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
                     <ul class="list-marked-2 box-categories-list">
                         <li>
-                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Asset/images/cta-3-368x420.jpg" alt="" width="368" height="420" /></a>
+                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Assets/images/cta-3-368x420.jpg" alt="" width="368" height="420" /></a>
                             <h5 class="box-categories-title">Beach Holidays</h5>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div><a class="link-classic wow fadeInUp" href="#">Other Tours<span></span></a>
+    </div><a class="link-classic wow fadeInUp" href="">Other Tours<span></span></a>
     <!-- Owl Carousel-->
 </div>
 
