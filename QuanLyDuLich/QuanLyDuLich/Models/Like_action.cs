@@ -9,16 +9,13 @@ namespace QuanLyDuLich.Models
     public partial class Like_action
     {
         [Key]
-        [StringLength(10)]
-        public string id_likeaction { get; set; }
+        public int id_likeaction { get; set; }
 
         public bool? active { get; set; }
 
-        [StringLength(10)]
-        public string id_user { get; set; }
+        public int? id_user { get; set; }
 
-        [StringLength(10)]
-        public string id_news { get; set; }
+        public int? id_news { get; set; }
 
         public virtual News News { get; set; }
 

@@ -14,12 +14,13 @@ namespace QuanLyDuLich.Models
         {
             Comment = new HashSet<Comment>();
             Order_details = new HashSet<Order_details>();
+            Schedule = new HashSet<Schedule>();
             Tour_image = new HashSet<Tour_image>();
             TourManagement = new HashSet<TourManagement>();
         }
 
         [Key]
-        [StringLength(10)]
+        [StringLength(255)]
         public string id_tour { get; set; }
 
         [StringLength(100)]
@@ -37,6 +38,12 @@ namespace QuanLyDuLich.Models
 
         public DateTime? return_time { get; set; }
 
+        [StringLength(60)]
+        public string departure_location { get; set; }
+
+        [StringLength(60)]
+        public string arrival_location { get; set; }
+
         [StringLength(255)]
         public string image { get; set; }
 
@@ -46,6 +53,8 @@ namespace QuanLyDuLich.Models
         [Column(TypeName = "numeric")]
         public decimal? rating { get; set; }
 
+        public int? quantity { get; set; }
+
         public int? is_active { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -53,6 +62,9 @@ namespace QuanLyDuLich.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order_details> Order_details { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Schedule> Schedule { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour_image> Tour_image { get; set; }
