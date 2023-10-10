@@ -48,12 +48,19 @@
                                         <img class="img-fluid" alt="" src="~/Assets/images/logo/logo.png">
                                         <h2 class="m-b-0">Sign In</h2>
                                     </div>
-                                    <form>
+                                    @if (ViewBag.Error != "")
+                                    {
+                                        <div class="form-group">
+                                            <label class="font-weight-semibold" for="userName" style="color:red">@TempData["LoginFail"]</label>
+                                        </div>
+                                    }
+                                    <p style="color: green">@TempData["CreatedSuccess"]</p>
+                                    <form method="post">
                                         <div class="form-group">
                                             <label class="font-weight-semibold" for="userName">Username:</label>
                                             <div class="input-affix">
                                                 <i class="prefix-icon anticon anticon-user"></i>
-                                                <input type="text" class="form-control" id="userName" placeholder="Username">
+                                                <input type="text" class="form-control" id="userName" name="username" placeholder="Username">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -61,7 +68,7 @@
                                             <a class="float-right font-size-13 text-muted" href="">Forget Password?</a>
                                             <div class="input-affix m-b-10">
                                                 <i class="prefix-icon anticon anticon-lock"></i>
-                                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                             </div>
                                         </div>
                                         <div class="form-group">

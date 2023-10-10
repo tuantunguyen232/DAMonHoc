@@ -20,8 +20,7 @@ namespace QuanLyDuLich.Models
         }
 
         [Key]
-        [StringLength(10)]
-        public string id_user { get; set; }
+        public int id_user { get; set; }
 
         [StringLength(20)]
         public string first_name { get; set; }
@@ -32,7 +31,7 @@ namespace QuanLyDuLich.Models
         [StringLength(20)]
         public string username { get; set; }
 
-        [StringLength(20)]
+        [StringLength(255)]
         public string password { get; set; }
 
         [Column(TypeName = "date")]
@@ -43,6 +42,9 @@ namespace QuanLyDuLich.Models
 
         [StringLength(255)]
         public string image { get; set; }
+
+        [StringLength(30)]
+        public string email { get; set; }
 
         public int? is_active { get; set; }
 

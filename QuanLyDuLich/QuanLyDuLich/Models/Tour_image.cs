@@ -9,8 +9,7 @@ namespace QuanLyDuLich.Models
     public partial class Tour_image
     {
         [Key]
-        [StringLength(10)]
-        public string id_tourimage { get; set; }
+        public int id_tourimage { get; set; }
 
         [StringLength(255)]
         public string image_link { get; set; }
@@ -18,7 +17,7 @@ namespace QuanLyDuLich.Models
         [StringLength(255)]
         public string image_des { get; set; }
 
-        [StringLength(10)]
+        [StringLength(255)]
         public string id_tour { get; set; }
 
         public virtual Tour Tour { get; set; }

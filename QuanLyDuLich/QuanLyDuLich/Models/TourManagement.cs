@@ -10,14 +10,12 @@ namespace QuanLyDuLich.Models
     public partial class TourManagement
     {
         [Key]
-        [StringLength(10)]
-        public string id_tour_manamegement { get; set; }
+        public int id_tour_manamegement { get; set; }
 
-        [StringLength(10)]
+        [StringLength(255)]
         public string id_tour { get; set; }
 
-        [StringLength(10)]
-        public string id_user { get; set; }
+        public int? id_user { get; set; }
 
         public DateTime? createDate { get; set; }
 

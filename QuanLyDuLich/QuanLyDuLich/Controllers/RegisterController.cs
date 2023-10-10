@@ -3,87 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyDuLich.Service;
+using QuanLyDuLich.Models;
+using QuanLyDuLich.Repository;
 
 namespace QuanLyDuLich.Controllers
 {
     public class RegisterController : Controller
     {
+        private DuLichDB db = new DuLichDB();
+        private UserService userService = new UserService();
+        private UserRepository userRepository = new UserRepository();
         // GET: Register
         public ActionResult Register()
         {
             return View();
         }
 
-        // GET: Register/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Register/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Register/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [Obsolete]
+        public ActionResult Register(User user, HttpPostedFileBase Image)
         {
-            try
+            if (userService.Check(user))
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                bool us = userRepository.CreateUser(user, Image);
+                if (!us)
+                {
+                    TempData["FailMessage"] = "Đăng ký người dùng không thành công!";
+                    return RedirectToAction("Register", "Register");
+                }
+                else
+                {
+                    TempData["CreatedSuccess"] = "Đăng ký người dùng thành công!";
+                    return RedirectToAction("LogIn", "LogIn");
+                }
             }
-            catch
+            else
             {
-                return View();
-            }
-        }
-
-        // GET: Register/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Register/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Register/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Register/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                TempData["UsernameExists"] = "Username đã tồn tại!";
+                ViewBag.Error = "Đăng ký không thành công!";
+                return RedirectToAction("Register", "Register");
             }
         }
     }
 }
+

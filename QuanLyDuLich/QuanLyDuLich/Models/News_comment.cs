@@ -9,19 +9,16 @@ namespace QuanLyDuLich.Models
     public partial class News_comment
     {
         [Key]
-        [StringLength(10)]
-        public string id_newscomment { get; set; }
+        public int id_newscomment { get; set; }
 
         public DateTime? created_date { get; set; }
 
-        [StringLength(255)]
+        [Column(TypeName = "text")]
         public string content { get; set; }
 
-        [StringLength(10)]
-        public string id_news { get; set; }
+        public int? id_news { get; set; }
 
-        [StringLength(10)]
-        public string id_user { get; set; }
+        public int? id_user { get; set; }
 
         public virtual News News { get; set; }
 

@@ -10,8 +10,7 @@ namespace QuanLyDuLich.Models
     public partial class Comment
     {
         [Key]
-        [StringLength(10)]
-        public string id_comment { get; set; }
+        public int id_comment { get; set; }
 
         public DateTime? created_date { get; set; }
 
@@ -20,11 +19,10 @@ namespace QuanLyDuLich.Models
 
         public int? rate { get; set; }
 
-        [StringLength(10)]
+        [StringLength(255)]
         public string id_tour { get; set; }
 
-        [StringLength(10)]
-        public string id_user { get; set; }
+        public int? id_user { get; set; }
 
         public virtual Tour Tour { get; set; }
 

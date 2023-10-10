@@ -160,3 +160,12 @@ D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\obj\Debug\QuanLyDuLich.csproj
 D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\obj\Debug\QuanLyDuLich.csproj.CopyComplete
 D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\obj\Debug\QuanLyDuLich.dll
 D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\obj\Debug\QuanLyDuLich.pdb
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\BCrypt.Net.dll
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\CloudinaryDotNet.dll
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\PagedList.dll
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\System.Text.Encodings.Web.dll
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\BCrypt.Net.pdb
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\BCrypt.Net.xml
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\CloudinaryDotNet.xml
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\PagedList.xml
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\System.Text.Encodings.Web.xml

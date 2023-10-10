@@ -9,13 +9,11 @@ namespace QuanLyDuLich.Models
     public partial class Order_details
     {
         [Key]
-        [StringLength(10)]
-        public string id_orderdetail { get; set; }
+        public int id_orderdetail { get; set; }
 
-        [StringLength(10)]
-        public string id_orders { get; set; }
+        public int? id_orders { get; set; }
 
-        [StringLength(10)]
+        [StringLength(255)]
         public string id_tour { get; set; }
 
         public int? quantity { get; set; }

@@ -17,8 +17,7 @@ namespace QuanLyDuLich.Models
         }
 
         [Key]
-        [StringLength(10)]
-        public string id_news { get; set; }
+        public int id_news { get; set; }
 
         [StringLength(100)]
         public string news_name { get; set; }
@@ -26,13 +25,15 @@ namespace QuanLyDuLich.Models
         [StringLength(255)]
         public string news_description { get; set; }
 
+        [Column(TypeName = "text")]
+        public string content { get; set; }
+
         [StringLength(60)]
         public string address { get; set; }
 
         public DateTime? created_date { get; set; }
 
-        [StringLength(255)]
-        public string image { get; set; }
+        public int? image { get; set; }
 
         public int? like_count { get; set; }
 

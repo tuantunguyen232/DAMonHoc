@@ -16,15 +16,13 @@ namespace QuanLyDuLich.Models
         }
 
         [Key]
-        [StringLength(10)]
-        public string id_orders { get; set; }
+        public int id_orders { get; set; }
 
         public DateTime? created_date { get; set; }
 
         public decimal? total { get; set; }
 
-        [StringLength(10)]
-        public string id_user { get; set; }
+        public int? id_user { get; set; }
 
         [StringLength(50)]
         public string state { get; set; }

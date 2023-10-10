@@ -9,8 +9,7 @@ namespace QuanLyDuLich.Models
     public partial class News_image
     {
         [Key]
-        [StringLength(10)]
-        public string id_newsiamge { get; set; }
+        public int id_newsiamge { get; set; }
 
         [StringLength(255)]
         public string image_link { get; set; }
@@ -18,8 +17,7 @@ namespace QuanLyDuLich.Models
         [StringLength(255)]
         public string image_des { get; set; }
 
-        [StringLength(10)]
-        public string id_news { get; set; }
+        public int? id_news { get; set; }
 
         public virtual News News { get; set; }
     }
