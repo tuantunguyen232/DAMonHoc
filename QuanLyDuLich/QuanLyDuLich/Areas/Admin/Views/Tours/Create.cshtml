@@ -1,0 +1,185 @@
+﻿@model QuanLyDuLich.Models.Tour
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+@section PageTitle{
+    Tạo tour mới
+}
+
+<h2>Nhập thông tin Tour mới</h2>
+
+@section HeadLinks{
+    <link href="~/Assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @if (TempData.ContainsKey("ErrorMessage"))
+        {
+            <div class="alert alert-danger">
+                <div class="d-flex justify-content-start">
+                    <span class="alert-icon m-r-20 font-size-30">
+                        <i class="anticon anticon-check-circle"></i>
+                    </span>
+                    <div>
+                        <h5 class="alert-heading">Thêm thất bại</h5>
+                        <p>@TempData["ErrorMessage"].</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="tour_name">Tên Tour:</label>
+            <input type="text" class="form-control" id="tour_name" name="tour_name" placeholder="Tên Tour" required>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="tour_description">Mô tả Tour:</label>
+            <textarea class="form-control" id="tour_description" name="tour_description" placeholder="Nhập mô tả tour..." aria-label="With textarea"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="tour_schedule">Lịch Trình:</label>
+            <textarea class="form-control" id="tour_schedule" name="tour_schedule" placeholder="Nhập lịch trình..." aria-label="With textarea"></textarea>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label class="font-weight-semibold" for="price">Giá Tour:</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Nhập giá tiền" aria-label="Amount (to the nearest dollar)" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text">VNĐ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <label class="font-weight-semibold" for="quantity">Số lượng:</label>
+                <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Số lượng..." required>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold">Thời gian của Tour:</label>
+            <div class="d-flex align-items-center">
+                <span class="p-h-10">Từ</span>
+                <input type="date" class="form-control datepicker-input" id="departure_time" name="departure_time" placeholder="From" required>
+                <span class="p-h-10">Đến</span>
+                <input type="date" class="form-control datepicker-input" id="return_time" name="return_time" placeholder="To" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <label class="font-weight-semibold" for="departure_location">Điểm xuất phát:</label>
+                    <input type="text" class="form-control" id="departure_location" name="departure_location" placeholder="Điểm xuất phát..." required>
+                </div>
+                <div class="col">
+                    <label class="font-weight-semibold" for="arrival_location">Điểm đến:</label>
+                    <input type="text" class="form-control" id="arrival_location" name="arrival_location" placeholder="Điểm đến..." required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="image">Hình ảnh:</label>
+            <div class="custom-file">
+                <input name="Image" type="file" class="form-control custom-file-input" id="thumbnailFile" accept="image/*">
+                <label class="custom-file-label" for="thumbnailFile">Chọn ảnh</label>
+            </div>
+            <div id="uploadSuccessNotification" style="display: none;">
+                + Thumbnail uploaded successfully!
+            </div>
+            <img id="thumbnailPreview" src="#" alt="Thumbnail preview" style="display:none; max-width:100%">
+        </div>
+
+
+        <div class="m-b-15">
+            <div class="form-group">
+                <label class="font-weight-semibold" for="is_active">Trạng thái Tour:</label>
+                <select class="custom-select" id="status" name="status">
+                    <option selected>Pending</option>
+                    <option value="In Stock">Instock</option>
+                    <option value="Out of Stock">Out of stock</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="m-b-15">
+            <div class="form-group">
+                <label class="font-weight-semibold" for="is_active">Trạng thái Duyệt:</label>
+                <select class="custom-select" id="is_active" name="is_active">
+                    <option value="false" selected>Chờ</option>
+                    <option value="true">Duyệt</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="submitBtn" value="Xác nhận" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@*<button class="btn btn-primary m-r-5" >Primary</button>*@
+
+<div>
+    @Html.ActionLink("Back to List", "TourList")
+</div>
+
+
+<script>
+    const thumbnailInput = document.getElementById('thumbnailFile');
+    const thumbnailPreview = document.getElementById('thumbnailPreview');
+    thumbnailInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener('load', function () {
+                thumbnailPreview.src = this.result;
+                thumbnailPreview.style.display = 'block';
+                thumbnailPreview.style.maxWidth = "100px";
+                document.getElementById('uploadSuccessNotification').style.display = 'block';
+            });
+            reader.readAsDataURL(file);
+        }
+    });
+
+    const statusEl = document.querySelector('#status');
+    const quantityEl = document.querySelector('#quantity');
+    const submitBtn = document.querySelector('#submitBtn');
+
+    submitBtn.addEventListener('click', function () {
+        const quantity = parseInt(quantityEl.value);
+        if (quantity === 0) {
+            statusEl.value = "Out of Stock";
+            console.log("Số lượng = 0 thì hết hàng");
+        }
+        else if (quantity != 0) {
+            statusEl.value = "In Stock";
+            console.log("Số lượng > 0 thì còn hàng");
+        }
+
+    });
+
+
+
+</script>
+
+<script src="~/Assets/vendors/jquery-validation/jquery.validate.min.js"></script>
+<script src="~/Assets/js/pages/e-commerce-product-edit.js"></script>

@@ -1,0 +1,136 @@
+﻿@model QuanLyDuLich.Models.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+@section PageTitle{
+    Tạo tài khoản mới
+}
+
+<h2>Tạo Tài Khoản Mới</h2>
+
+@if (TempData.ContainsKey("SavevError"))
+{
+    <div class="alert alert-danger">
+        <div class="d-flex justify-content-start">
+            <span class="alert-icon m-r-20 font-size-30">
+                <i class="anticon anticon-close-circle"></i>
+            </span>
+            <div>
+                <h5 class="alert-heading">Thao tác thất bại</h5>
+                <p>@TempData["SavevError"].</p>
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData.ContainsKey("AddError"))
+{
+    <div class="alert alert-danger">
+        <div class="d-flex justify-content-start">
+            <span class="alert-icon m-r-20 font-size-30">
+                <i class="anticon anticon-close-circle"></i>
+            </span>
+            <div>
+                <h5 class="alert-heading">Thao tác thất bại</h5>
+                <p>@TempData["AddError"].</p>
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="last_name">Họ:</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Họ">
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="first_name">Tên:</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Tên">
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="username">Tên tài khoản:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Tên tài khoản">
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="password">Mật khẩu:</label>
+            <input type="text" class="form-control" id="password" name="password" placeholder="Mật khẩu">
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="date_of_birth">Ngày sinh:</label>
+            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="Ngày sinh">
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="phone">SĐT:</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại">
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="user_role">Vai trò:</label>
+            <select class="custom-select" id="user_role" name="user_role">
+                <option value="Admin">Admin</option>
+                <option value="Nhân viên">Nhân viên</option>
+                <option value="Khách hàng" selected>Khách hàng</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-semibold" for="image">Avatar:</label>
+            <div class="custom-file">
+                <input name="Image" type="file" class="form-control custom-file-input" id="thumbnailFile" accept="image/*">
+                <label class="custom-file-label" for="thumbnailFile">Choose avatar</label>
+            </div>
+            <div id="uploadSuccessNotification" style="display: none;">
+                + Thumbnail uploaded successfully!
+            </div>
+            <img id="thumbnailPreview" src="#" alt="Thumbnail preview" style="display:none; max-width:100%">
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo tài khoản" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    const thumbnailInput = document.getElementById('thumbnailFile');
+    const thumbnailPreview = document.getElementById('thumbnailPreview');
+    thumbnailInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener('load', function () {
+                thumbnailPreview.src = this.result;
+                thumbnailPreview.style.display = 'block';
+                thumbnailPreview.style.maxWidth = "100px";
+                document.getElementById('uploadSuccessNotification').style.display = 'block';
+            });
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
