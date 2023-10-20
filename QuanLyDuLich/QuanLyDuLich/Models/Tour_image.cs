@@ -17,8 +17,7 @@ namespace QuanLyDuLich.Models
         [StringLength(255)]
         public string image_des { get; set; }
 
-        [StringLength(255)]
-        public string id_tour { get; set; }
+        public int? id_tour { get; set; }
 
         public virtual Tour Tour { get; set; }
     }

@@ -13,8 +13,6 @@ namespace QuanLyDuLich.Models
         public User()
         {
             Comment = new HashSet<Comment>();
-            Like_action = new HashSet<Like_action>();
-            News_comment = new HashSet<News_comment>();
             Order = new HashSet<Order>();
             TourManagement = new HashSet<TourManagement>();
         }
@@ -46,16 +44,11 @@ namespace QuanLyDuLich.Models
         [StringLength(30)]
         public string email { get; set; }
 
-        public int? is_active { get; set; }
+        [StringLength(50)]
+        public string phone { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Like_action> Like_action { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<News_comment> News_comment { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

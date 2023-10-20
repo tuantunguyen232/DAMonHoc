@@ -1,0 +1,70 @@
+﻿@model QuanLyDuLich.Models.Tour
+
+@{
+    ViewBag.Title = "ActiveTour";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+@section PageTitle{
+    Xác nhận
+}
+
+<h2>ActiveTour</h2>
+
+<h3>Xác nhận duyệt tour này?</h3>
+
+<div>
+    <h4>Tour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_tour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_tour)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tour_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tour_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_active)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Duyệt Tour này" class="btn btn-success" /> |
+            @Html.ActionLink("Back to List", "TourReview")
+        </div>
+    }
+</div>

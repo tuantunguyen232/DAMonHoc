@@ -1,0 +1,51 @@
+﻿@model QuanLyDuLich.Models.TourManagement
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TourManagement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tour.tour_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.tour_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isAsign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isAsign)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_tour_manamegement }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

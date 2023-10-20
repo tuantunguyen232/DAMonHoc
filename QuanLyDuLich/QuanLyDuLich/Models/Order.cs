@@ -9,26 +9,23 @@ namespace QuanLyDuLich.Models
     [Table("Order")]
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            Order_details = new HashSet<Order_details>();
-        }
-
         [Key]
         public int id_orders { get; set; }
 
         public DateTime? created_date { get; set; }
 
-        public decimal? total { get; set; }
+        public decimal? price { get; set; }
 
         public int? id_user { get; set; }
 
         [StringLength(50)]
         public string state { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order_details> Order_details { get; set; }
+        public int? id_tour { get; set; }
+
+        public int? quantity { get; set; }
+
+        public virtual Tour Tour { get; set; }
 
         public virtual User User { get; set; }
     }
