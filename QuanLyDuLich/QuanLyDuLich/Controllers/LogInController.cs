@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using QuanLyDuLich.Models;
 using QuanLyDuLich.Repository;
+using QuanLyDuLich.Filter;
 
 namespace QuanLyDuLich.Controllers
 {
@@ -13,11 +14,13 @@ namespace QuanLyDuLich.Controllers
         private UserRepository userRepository = new UserRepository();
         // GET: LogIn
         [HttpGet]
+        [AnonymousFilter]
         public ActionResult LogIn()
         {
             return View();
         }
         [HttpPost]
+        [AnonymousFilter]
         public ActionResult LogIn(User user)
         {
             var us = userRepository.GetUser().SingleOrDefault(u => u.username == user.username);
@@ -35,7 +38,7 @@ namespace QuanLyDuLich.Controllers
                         case "Admin":
                             return RedirectToAction("Index", "Admin");
                         case "Nhân viên":
-                            return RedirectToAction("Index", "Staff");
+                            return RedirectToAction("Index", "TourStaff", new { area = "Staff" });
                         case "Khách hàng":
                             return RedirectToAction("Index", "Home");
                     }
@@ -48,7 +51,6 @@ namespace QuanLyDuLich.Controllers
             }
             return View();
         }
-
         public ActionResult Logout()
         {
             Session.Abandon();

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "OutofStock";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+s
+<section class="breadcrumbs-custom-inset">
+    <div class="breadcrumbs-custom context-dark bg-overlay-60">
+        <div class="container">
+            <h2 class="breadcrumbs-custom-title">Sorry @Session["User"] :(, Tour out of Stock now</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active">Cart</li>
+            </ul>
+        </div>
+        <div class="box-position" style="background-image: url(/Assets/images/wallhaven-7pl713_1920x500.png);"></div>
+    </div>
+</section>
+
+
+
+

@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Staff/Views/Shared/_MainLayoutStaff.cshtml";
+}
+<h2>Create Tour</h2>
+@if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert alert-danger">
+            <div class="d-flex justify-content-start">
+                <span class="alert-icon m-r-20 font-size-30">
+                    <i class="anticon anticon-close-circle"></i>
+                </span>
+                <div>
+                    <h5 class="alert-heading">Thêm thất bại</h5>
+                    <p>@TempData["ErrorMessage"].</p>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+@using (Html.BeginForm("Create", "TourStaff", FormMethod.Post,
+    HtmlHelper.AnonymousObjectToHtmlAttributes(new { enctype = "multipart/form-data" })))
+{
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label for="inputCity">Tên Tour</label>
+        <input required placeholder="ex: Tour du lịch Vũng Tàu..." name="tour_name" type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="inputZip">Số lượng tour</label>
+        <input required placeholder="ex: 20" name="quantity" type="number" class="form-control" id="inputZip">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="inputZip">Giá tour</label>
+        <input required placeholder="ex: 2000000 VND" name="price" type="number" class="form-control" id="inputZip">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="inputZip">Ngày đi</label>
+        <input required name="departure_time" placeholder="ex: 2.." type="date" class="form-control" id="inputZip">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="inputZip">Ngày về</label>
+        <input required name="return_time" placeholder="ex: 2.." type="date" class="form-control" id="inputZip">
+    </div>
+</div>
+<div class="form-group row">
+    <div class="form-group col-md-6">
+        <label for="inputZip">Nơi đi</label>
+        <input required name="departure_location" type="text" class="form-control" id="inputEmail3" placeholder="địa điểm tập trung: TP.HCM">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="inputZip">Nơi đến</label>
+        <input required name="arrival_location" type="text" class="form-control" id="inputEmail3" placeholder="địa điểm đến: Vũng Tàu">
+    </div>
+
+</div>
+<div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Mô tả tour</label>
+    <div class="col-sm-12">
+        <input required name="tour_description" type="text" class="form-control" id="inputEmail3" placeholder="thông tin tour">
+    </div>
+
+
+</div>
+@*<fieldset class="form-group">
+        <div class="row">
+            <label class="col-form-label col-sm-2 pt-0">Quyền sở hữu</label>
+            <div class="col-sm-10">
+                <div class="radio">
+                    <input required type="radio" name="ID" id="gridRadios1" value="KG">
+                    <label for="gridRadios1">
+                        Khách kí gửi
+                    </label>
+                </div>
+                <div class="radio">
+                    <div class="form-group col-md-4">
+                        <label for="inputZip" style="color:red">**Nếu là kí gửi điền ID</label>
+                        <input required placeholder="ex: 2.." name="CustomerID" type="number" class="form-control" id="inputZip">
+                    </div>
+                    @if (TempData.ContainsKey("CustomerIDMessage"))
+                    {
+                        <div class="alert alert-danger">
+                            @TempData["CustomerIDMessage"]
+                        </div>
+                    }
+                </div>
+                <div class="radio">
+                    <input required type="radio" name="ID" id="gridRadios2" value="HT">
+                    <label for="gridRadios2">
+                        Hệ thống
+                    </label>
+                </div>
+            </div>
+        </div>
+    </fieldset>*@
+<fieldset class="form-group">
+    <div class="row">
+        <label class="col-form-label col-sm-2 pt-0">Trạng thái</label>
+        <div class="col-sm-10">
+            <div class="radio">
+                <input required type="radio" name="status" id="isOcc1" value="In Stock">
+                <label for="isOcc1">
+                    On Stock
+                </label>
+            </div>
+            <div class="radio">
+                <input required type="radio" name="status" id="isOcc2" value="Out of Stock">
+                <label for="isOcc2">
+                    Out of Stock
+                </label>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<!--<div class="form-group row">
+    <div class="col-sm-2">Loại nhà</div>
+    <div class="col-sm-10" style="
+
+                                display: grid;
+                                grid-template-columns: 1fr 1fr 1fr;
+                                gap: 10px;
+
+                            ">-->
+        @*@for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="radio">
+                    <input required type="radio" name="BuildingTypeID" id="BuildingTypeID@(i)" value="@Model[i].ID">
+                    <label for="BuildingTypeID@(i)">
+                        @Model[i].Name
+                    </label>
+                </div>
+            }*@
+
+
+    <!--</div>
+</div>-->
+<div class="form-group row">
+    <div class="col-md-6">
+        <div class="custom-file">
+            <input required name="Image" type="file" class="custom-file-input" id="thumbnailFile" accept="image/*">
+            <label class="custom-file-label" for="thumbnailFile">Chọn hình đại diện</label>
+        </div>
+        <div id="uploadSuccessNotification" style="display: none;">
+            <i class="fas fa-check-circle"></i> Thumbnail uploaded successfully!
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="custom-file">
+            <input required type="file" class="custom-file-input" id="customFile" multiple accept="image/*" name="Images">
+            <label class="custom-file-label" for="customFile">Chọn hình ảnh tour</label>
+        </div>
+        <div id="uploadIcon" style="display: none;">
+            <i class="fas fa-check-circle"></i> <span id="numUploaded"></span> images uploaded successfully!
+        </div>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Thêm dữ liệu</button>
+    </div>
+</div>
+}
+
+
+

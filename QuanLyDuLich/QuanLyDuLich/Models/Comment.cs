@@ -19,8 +19,7 @@ namespace QuanLyDuLich.Models
 
         public int? rate { get; set; }
 
-        [StringLength(255)]
-        public string id_tour { get; set; }
+        public int? id_tour { get; set; }
 
         public int? id_user { get; set; }
 

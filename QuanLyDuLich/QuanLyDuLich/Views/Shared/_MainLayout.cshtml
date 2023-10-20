@@ -1,5 +1,4 @@
-﻿@model IEnumerable<QuanLyDuLich.Models.User>
-@{
+﻿@{
     ViewBag.Title = "_MainLayout";
 }
 
@@ -94,22 +93,25 @@
                                     </a>
                                     <ul class="dropdown-menu drop" style="background-color: #162e44; padding:6.6px!important; font-weight: 500;" role="menu">
                                         <li style=" padding: 10px; border-bottom: 1px solid #fefefe;"><a href="@Url.Action("Index", "Home")">Thông tin cá nhân</a></li>
-                                        <li style=" padding: 10px; border-bottom: 1px solid #fefefe;"><a href="@Url.Action("Index", "Home")" >Lịch của tôi</a></li>
+                                        <li style=" padding: 10px; border-bottom: 1px solid #fefefe;"><a href="@Url.Action("Index", "Home")">Lịch của tôi</a></li>
+                                        <li style=" padding: 10px; border-bottom: 1px solid #fefefe;"><a href="@Url.Action("Index", "Cart")">Yêu thích<i class="fa-solid fa-cart-shopping"></i> </a></li>
                                         <li style=" padding: 10px"><a href="@Url.Action("Logout", "LogIn")"> Đăng xuất <i class="fa-solid fa-right-from-bracket"></i> </a></li>
                                     </ul>
+                                    
                                 }
                                 else
                                 {
                                     <ul class="list-inline list-inline-md rd-navbar-corporate-list-social">
                                         <li>
-                                            <a class="icon fa " style="font-family: Montserrat; font-weight: 500" href="@Url.Action("LogIn","LogIn")"> Login</a>
+                                            <a class="icon f" style="font: Montserrat, sans-serif, Arial, sans-serif; font-weight: 500; font-size:16px;" href="@Url.Action("LogIn","LogIn")">Login</a>
                                         </li>
                                         <li>
-                                            <a class="icon fa " style="font-family: Montserrat; font-weight: 500" href="#">|</a>
+                                            <a class="icon f" style="font: Montserrat; font-weight: 500" href="#">/</a>
                                         </li>
                                         <li>
-                                            <a class="icon fa " style="font-family: Montserrat; font-weight: 500" href="@Url.Action("Register","Register")"> Register</a>
+                                            <a class="icon f" style="font: Montserrat; font-weight: 500; font-size: 16px;" href="@Url.Action("Register","Register")">Register</a>
                                         </li>
+                                        
                                     </ul>
                                 }
 
@@ -121,9 +123,7 @@
                                     <li class="rd-nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Tour" ? "active" : "")">
                                         <a class="rd-nav-link" href="@Url.Action("Index", "Tour")">Tour</a>
                                     </li>
-                                    <li class="rd-nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "News" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
-                                        <a class="rd-nav-link" href="@Url.Action("Index", "News")">News</a>
-                                    </li>
+
                                     <li class="rd-nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Home" && ViewContext.RouteData.Values["action"].ToString() == "About" ? "active" : "")">
                                         <a class="rd-nav-link" href="@Url.Action("About", "Home")">About</a>
                                     </li>

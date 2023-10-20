@@ -31,6 +31,22 @@
             display: block;
         }
     </style>
+     <script>
+         const thumbnailInput = document.getElementById('thumbnailFile');
+         const thumbnailPreview = document.getElementById('thumbnailPreview');
+         thumbnailInput.addEventListener('change', function () {
+             const file = this.files[0];
+             if (file) {
+                 const reader = new FileReader();
+                 reader.addEventListener('load', function () {
+                     thumbnailPreview.src = this.result;
+                     thumbnailPreview.style.display = 'block';
+                     document.getElementById('uploadSuccessNotification').style.display = 'block';
+                 });
+                 reader.readAsDataURL(file);
+             }
+         });
+     </script>
 </head>
 
 <body>
@@ -64,54 +80,61 @@
                                             <label class="font-weight-semibold" style="color:red">@TempData["UsernameExists"]</label>
                                         </div>
                                     }
-                                    <form method="post">
+                                    @using (Html.BeginForm("Register", "Register", FormMethod.Post,
+                                    HtmlHelper.AnonymousObjectToHtmlAttributes(new { enctype = "multipart/form-data" })))
+                                    {
+                                        @*<form method="post">*@
 
-                                        <div class="form-group">
-                                            <label class="font-weight-semibold" for="firstName">First name:</label>
-                                            <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Username">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-weight-semibold" for="lastName">Last name:</label>
-                                            <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Username">
-                                        </div>
-                                        @*<div class="form-group">
-                                            <label class="font-weight-semibold" for="Phone">Phone:</label>
-                                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Username">
-                                        </div>*@
-                                        <div class="form-group">
-                                            <label class="font-weight-semibold" for="email">Email:</label>
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-weight-semibold" for="userName">Username:</label>
-                                            <input type="text" class="form-control" id="userName" name="username" placeholder="Username">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-weight-semibold" for="password">Password:</label>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-weight-semibold" for="image">Avatar:</label>
-                                            <div class="custom-file">
-                                                <input name="Image" type="file" class="form-control custom-file-input" id="thumbnailFile" accept="image/*">
-                                                <label class="custom-file-label" for="thumbnailFile">Choose avatar</label>
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold" for="firstName">First name:</label>
+                                                <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Username">
                                             </div>
-                                            <div id="uploadSuccessNotification" style="display: none;">
-                                                + Thumbnail uploaded successfully!
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold" for="lastName">Last name:</label>
+                                                <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Username">
                                             </div>
-                                            <img id="thumbnailPreview" src="#" alt="Thumbnail preview" style="display:none; max-width:100%">
-                                        </div>
+                                            @*<div class="form-group">
+                                                <label class="font-weight-semibold" for="Phone">Phone:</label>
+                                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Username">
+                                            </div>*@
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold" for="email">Email:</label>
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold" for="userName">Username:</label>
+                                                <input type="text" class="form-control" id="userName" name="username" placeholder="Username">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold" for="password">Password:</label>
+                                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                            </div>
 
-                                        <div class="form-group">
-                                            <div class="d-flex align-items-center justify-content-between p-t-15">
-                                                @*<div class="checkbox">
-                        <input id="checkbox" type="checkbox">
-                        <label for="checkbox"><span>I have read the <a href="">agreement</a></span></label>
-                    </div>*@
-                                                <button class="btn btn-primary" type="submit">Sign In</button>
+                                            <div class="form-group">
+                                                <label class="font-weight-semibold" for="Image">Avatar:</label>
+                                                <div class="custom-file">
+                                                    <input name="Image" type="file" class="form-control custom-file-input" id="thumbnailFile" accept="image/*">
+                                                    <label class="custom-file-label" for="thumbnailFile">Choose avatar</label>
+                                                </div>
+                                                <div id="uploadSuccessNotification" style="display: none;">
+                                                    + Thumbnail uploaded successfully!
+                                                </div>
+                                                <img id="thumbnailPreview" src="#" alt="Thumbnail preview" style="display:none; max-width:100%">
                                             </div>
-                                        </div>
-                                    </form>
+
+                                            <div class="form-group">
+                                                <div class="d-flex align-items-center justify-content-between p-t-15">
+                                                    @*<div class="checkbox">
+                                                        <input id="checkbox" type="checkbox">
+                                                        <label for="checkbox"><span>I have read the <a href="">agreement</a></span></label>
+                                                    </div>*@
+                                                    <button class="btn btn-primary" type="submit">Sign In</button>
+                                                </div>
+                                            </div>
+                                        @*</form>*@
+                                    }
+
+
                                 </div>
                             </div>
                         </div>
@@ -135,22 +158,7 @@
 
     <!-- Core Vendors JS -->
     <script src="~/Assets/js/vendors.min.js"></script>
-    <script>
-        const thumbnailInput = document.getElementById('thumbnailFile');
-        const thumbnailPreview = document.getElementById('thumbnailPreview');
-        thumbnailInput.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.addEventListener('load', function () {
-                    thumbnailPreview.src = this.result;
-                    thumbnailPreview.style.display = 'block';
-                    document.getElementById('uploadSuccessNotification').style.display = 'block';
-                });
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+    
     <!-- page js -->
     <!-- Core JS -->
     <script src="~/Assets/js/app.min.js"></script>

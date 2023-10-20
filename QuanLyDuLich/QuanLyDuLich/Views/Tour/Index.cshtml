@@ -1,9 +1,9 @@
-﻿
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<QuanLyDuLich.Models.Tour>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
 <section class="breadcrumbs-custom-inset">
     <div class="breadcrumbs-custom context-dark bg-overlay-60">
         <div class="container">
@@ -12,41 +12,56 @@
                 <li><a href="index.html">Home</a></li>
                 <li class="active">Tour</li>
             </ul>
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h6 style="">Điểm đi</h6>
-                        <select class="form-select form-control mb-3" aria-label="Select location 1" placeholder="">
-                            <option selected>Chọn điểm đi</option>
-                            <option value="location1">Location 1</option>
-                            <option value="location2">Location 2</option>
-                            <option value="location3">Location 3</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <h6 style="">Điểm đến</h6>
-                        <select class="form-select form-control mb-3" aria-label="Select location 2" placeholder="Điểm đến">
-                            <option selected>Điểm đến</option>
-                            <option value="location1">Location 1</option>
-                            <option value="location2">Location 2</option>
-                            <option value="location3">Location 3</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <h6 style="">Ngày khởi hành</h6>
-                        <input type="date" class="form-control mb-3" id="datepicker" placeholder="Ngày tháng đi">
-                    </div>
-                    <div class="col-md-2">
-                        <h6 style="">Số ngày đi</h6>
-                        <input type="number" class="form-control mb-3" placeholder="Số ngày đi">
-                    </div>
-                    <div class="col-md-1"  style="padding-top: 22px">
-                        <button class="btn btn-primary btn-block">
-                            <i class="icon fa fa-search"></i>
-                        </button>
+            @using (Html.BeginForm("SearchKW", "Search"))
+            {
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 style="">Điểm đi</h6>
+                            <select name="departure_location" class="form-select form-control mb-3" aria-label="Select location 1" placeholder="Chọn điểm đi">
+                                <option selected></option>
+                                @foreach (var tour in Model)
+                                {
+                                    var locationText1 = $"{tour.departure_location}";
+                                    if (!ViewBag.SelectedLocations_departure.Contains(locationText1))
+                                    {
+                                        <option value="@tour.departure_location">@locationText1</option>
+                                        ViewBag.SelectedLocations_departure.Add(locationText1);
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 style="">Điểm đến</h6>
+                            <select name="arrival_location" class="form-select form-control mb-3" aria-label="Select location 2" placeholder="Chọn điểm đến">
+                                <option selected></option>
+                                @foreach (var tour in Model)
+                                {
+                                    var locationText = $"{tour.arrival_location}";
+                                    if (!ViewBag.SelectedLocations_arrival.Contains(locationText))
+                                    {
+                                        <option value="@tour.arrival_location">@locationText</option>
+                                        ViewBag.SelectedLocations_arrival.Add(locationText);
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 style="">Ngày khởi hành</h6>
+                            <input type="date" class="form-control mb-3" id="datepicker" placeholder="Ngày tháng đi" value="" name="departure_time">
+                        </div>
+                        <div class="col-md-2">
+                            <h6 style="">Số ngày đi</h6>
+                            <input type="number" class="form-control mb-3" placeholder="Số ngày đi" name="day_number">
+                        </div>
+                        <div class="col-md-1" style="padding-top: 22px">
+                            <button class="btn btn-primary btn-block" type="submit">
+                                <i class="icon fa fa-search"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
         <div class="box-position" style="background-image: url(/Assets/images/wallhaven-7pl713_1920x500.png);"></div>
     </div>
@@ -55,36 +70,73 @@
 <div style="margin-top: 70px; margin-bottom: 70px" class="container">
     <div class="box-categories cta-box-wrap">
         <div class="box-categories-content">
-            <div class="row justify-content-center">
-                <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
-                    <ul class="list-marked-2 box-categories-list">
-                        <li>
-                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Assets/images/cta-1-368x420.jpg" alt="" width="368" height="420" /></a>
-                            <h5 class="box-categories-title">Balloon Flights</h5>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
-                    <ul class="list-marked-2 box-categories-list">
-                        <li>
-                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Assets/images/cta-2-368x420.jpg" alt="" width="368" height="420" /></a>
-                            <h5 class="box-categories-title">Mountain Holiday</h5>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
-                    <ul class="list-marked-2 box-categories-list">
-                        <li>
-                            <a href="@Url.Action("Details","Tour", new { id = 1 } )"><img src="~/Assets/images/cta-3-368x420.jpg" alt="" width="368" height="420" /></a>
-                            <h5 class="box-categories-title">Beach Holidays</h5>
-                        </li>
-                    </ul>
-                </div>
+            <div class="row justify-content-center" >
+                @foreach (var tour in Model)
+                {
+                    <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s" style="padding-bottom: 70px; width: 368px; height: 420px">
+                        <ul class="list-marked-2 box-categories-list">
+                            <li>
+                                <a href="@Url.Action("Details", "Tour", new { id = tour.id_tour })">
+                                    <img src="@tour.image" alt="" style="width: 100%; height: auto; object-fit: cover; object-position: center center;"/>
+                                </a>
+                                <h5 class="box-categories-title">@tour.tour_name</h5>
+                            </li>
+                        </ul>
+                    </div>
+
+                }
             </div>
         </div>
-    </div><a class="link-classic wow fadeInUp" href="">Other Tours<span></span></a>
-    <!-- Owl Carousel-->
+    <div style="text-align:center; padding-top:20px; font-size:30px!important; line-height: 30px!important;  ">
+        @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { page = pageNumber }))
+    </div>
+</div>
 </div>
 
 
+<script>
+    var Book = [];
+    if (window.localStorage) {
+        Book = JSON.parse(window.localStorage.getItem("Book") || []);
+    }
+    function RequestInfo(id, name, price) {
+        var exist = false;
+        for (var i = 0; i < Book.length; i++) {
+            if (Book[i].ma == id) {
+                alert("Ban da dat lich xem toa nha nay roi!");
+                exist = true;
+                break;
+            }
+        }
+        if (!exist) {
+            var building = { ma: id, ten: name, gia: price };
+            Book.push(building);
+            window.localStorage.setItem("Book", JSON.stringify(Book));
+            alert("Them lich xem thanh cong!");
+        }
+    }
 
+</script>
+<style>
+    .custom-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Canh giữa nội dung theo chiều dọc */
+        text-align: center; /* Canh giữa nội dung theo chiều ngang */
+        width: 368px; /* Kích thước cố định theo chiều ngang */
+        height: 420px; /* Kích thước cố định theo chiều dọc */
+        padding: 10px; /* Thêm khoảng cách xung quanh */
+    }
+
+        .custom-card img {
+            max-width: 100%; /* Đảm bảo hình ảnh không tràn ra ngoài thẻ */
+            height: auto;
+        }
+
+    .box-categories-title {
+        /* Đảm bảo tiêu đề không tràn ra ngoài thẻ */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>

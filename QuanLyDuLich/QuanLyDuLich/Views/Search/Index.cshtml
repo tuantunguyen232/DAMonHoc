@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<section class="breadcrumbs-custom-inset">
+    <div class="breadcrumbs-custom context-dark bg-overlay-60">
+        <div class="container">
+            <h2 class="breadcrumbs-custom-title">Find your favorite tour</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active">Search</li>
+            </ul>
+            @using (Html.BeginForm("SearchKW", "Search", FormMethod.Post))
+            {
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 style="">Điểm đi</h6>
+                            <select class="form-select form-control mb-3" aria-label="Select location 1" placeholder="">
+                                <option selected>Chọn điểm đi</option>
+                                @foreach (var tour in Model)
+                                {
+                                    var locationText = $"{tour.departure_location}";
+                                    if (!ViewBag.SelectedLocations.Contains(locationText))
+                                    {
+                                        <option value="@tour.departure_location">@locationText</option>
+                                        ViewBag.SelectedLocations.Add(locationText);
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 style="">Điểm đến</h6>
+                            <select class="form-select form-control mb-3" aria-label="Select location 2" placeholder="Điểm đến">
+                                <option selected>Điểm đến</option>
+                                <option value="1">Vũng Tàu</option>
+                                <option value="2">Bình Thuận</option>
+                                <option value="3">Hà Nội</option>
+                                <option value="4">Phú Quốc</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 style="">Ngày khởi hành</h6>
+                            <input type="date" class="form-control mb-3" id="datepicker" placeholder="Ngày tháng đi" value="" name="departure_time">
+                        </div>
+                        <div class="col-md-2">
+                            <h6 style="">Số ngày đi</h6>
+                            <input type="number" class="form-control mb-3" placeholder="Số ngày đi">
+                        </div>
+                        <div class="col-md-1" style="padding-top: 22px">
+                            <button class="btn btn-primary btn-block" type="submit">
+                                <i class="icon fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="box-position" style="background-image: url(/Assets/images/wallhaven-7pl713_1920x500.png);"></div>
+    </div>
+</section>

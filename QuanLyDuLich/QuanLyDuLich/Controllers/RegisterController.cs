@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using QuanLyDuLich.Service;
 using QuanLyDuLich.Models;
 using QuanLyDuLich.Repository;
+using QuanLyDuLich.Filter;
 
 namespace QuanLyDuLich.Controllers
 {
@@ -15,6 +16,7 @@ namespace QuanLyDuLich.Controllers
         private UserService userService = new UserService();
         private UserRepository userRepository = new UserRepository();
         // GET: Register
+        [AnonymousFilter]
         public ActionResult Register()
         {
             return View();

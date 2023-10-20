@@ -7878,10 +7878,9 @@ textarea.textarea-lg {
 .pagination {
 	align-items: center;
 	justify-content: center;
-	font-size: 0;
-	line-height: 0;
 	margin-bottom: -14px;
 	margin-left: -14px;
+	
 }
 
 .pagination:empty {
@@ -7894,6 +7893,10 @@ textarea.textarea-lg {
 	margin-top: 0;
 	margin-bottom: 14px;
 	margin-left: 14px;
+	border: 1px solid #01b3a7;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
 }
 
 @media (min-width: 576px) {
