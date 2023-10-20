@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="breadcrumbs-custom-inset">
+    <div class="breadcrumbs-custom context-dark bg-overlay-60">
+        <div class="container">
+            <h2 class="breadcrumbs-custom-title">Search Result</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="@Url.Action("Index", "Tour")">Tour</a></li>
+                <li class="active">Resutl</li>
+            </ul>
+        </div>
+        <div class="box-position" style="background-image: url(~/Assets/images/breadcrumbs-bg.jpg);"></div>
+    </div>
+</section>
+
+<div style="margin-top: 70px; margin-bottom: 70px" class="container">
+    <div class="box-categories cta-box-wrap">
+        <div class="box-categories-content">
+            <div class="row justify-content-center">
+                @foreach (var tour in Model)
+                {
+                    <div class="col-md-4 wow fadeInDown col-9" data-wow-delay=".2s">
+                        <ul class="list-marked-2 box-categories-list">
+                            <li>
+                                <a href="@Url.Action("Details", "Tour", new { id = tour.id_tour })"><img src="@tour.image" alt="" width="368" height="420" /></a>
+                                <h5 class="box-categories-title">@tour.tour_name</h5>
+                            </li>
+                        </ul>
+                    </div>
+
+                }
+            </div>
+        </div>
+        
+    </div>
+</div>
+

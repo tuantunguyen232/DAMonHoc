@@ -3,87 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyDuLich.Models;
+using QuanLyDuLich.Repository;
+using PagedList;
 
 namespace QuanLyDuLich.Controllers
 {
     public class TourController : Controller
     {
+        private TourRepository tourRepository = new TourRepository();
         // GET: Tour
-        public ActionResult Index()
+        public ActionResult Index(int? page, int? pageSize)
         {
-            return View();
+            int pageNumber = (page ?? 1);
+            int size = 9;
+            IEnumerable<Tour> tour = tourRepository.GetAll();
+            var pageTour = tour.ToPagedList(pageNumber, size);
+            ViewBag.SelectedLocations_departure = new List<string>();
+            ViewBag.SelectedLocations_arrival = new List<string>();
+            return View(pageTour);
         }
 
         // GET: Tour/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pageDetails = tourRepository.FindByID(id);
+            return View(pageDetails);
         }
 
-        // GET: Tour/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Tour/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Tour/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Tour/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Tour/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Tour/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

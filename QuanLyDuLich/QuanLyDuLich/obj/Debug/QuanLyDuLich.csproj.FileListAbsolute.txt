@@ -169,3 +169,5 @@ D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\BCrypt.Net.xml
 D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\CloudinaryDotNet.xml
 D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\PagedList.xml
 D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\System.Text.Encodings.Web.xml
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\PagedList.Mvc.dll
+D:\QuanLyDuLich\DAMonHoc\QuanLyDuLich\QuanLyDuLich\bin\PagedList.Mvc.xml

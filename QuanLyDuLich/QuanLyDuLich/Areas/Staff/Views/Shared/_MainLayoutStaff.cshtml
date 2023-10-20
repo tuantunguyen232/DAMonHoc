@@ -192,23 +192,52 @@
                 <div class="side-nav-inner">
                     <ul class="side-nav-menu scrollable">
                         <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" href="/Staff">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="icon-holder">
-                                    <i class="anticon anticon-lock"></i>
+                                    <i class="anticon anticon-build"></i>
                                 </span>
-                                <span class="title">Tòa nhà đang quản lý</span>
-
+                                <span class="arrow">
+                                    <i class="arrow-icon"></i>
+                                </span>
+                                <span class="title">Quản lý Tour</span>
                             </a>
+                            <ul class="dropdown-menu">
+                                <!--<li>
+                                    Html.ActionLink("Xem thông tin tour", "Index", "AssignmentEmployee")-->
+                                    @*<a href="@Url.Action("Index", "AssignmentEmployee")">Phân công nhân viên </a>*@
+                                <!--</li>-->
+                                <li>
+                                    @Html.ActionLink("Thêm Tour", "Create", "TourStaff")
+                                    @*<a href="@Url.Action("Index", "AssignmentEmployee")">Phân công nhân viên </a>*@
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "TourStaff")">Quản lý thông tin tour</a>
+                                </li>
+
+                            </ul>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" href="/Staff/StaffManagement/MySchedule">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
                                 <span class="icon-holder">
-                                    <i class="anticon anticon-appstore"></i>
+                                    <i class="anticon anticon-form"></i>
                                 </span>
-                                <span class="title">Lịch hẹn xem nhà</span>
+                                <span class="title">Quản lý lịch cá nhân</span>
+                                <span class="arrow">
+                                    <i class="arrow-icon"></i>
+                                </span>
                             </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href='@Url.Action("Index", "Schedule")'>Xem lịch cá nhân</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("EmployeeSchedule", "Schedule")">Quản lý</a>
+                                </li>
+                            </ul>
                         </li>
+
+                        
                     </ul>
                 </div>
             </div>

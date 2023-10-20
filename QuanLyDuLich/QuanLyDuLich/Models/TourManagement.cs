@@ -12,12 +12,13 @@ namespace QuanLyDuLich.Models
         [Key]
         public int id_tour_manamegement { get; set; }
 
-        [StringLength(255)]
-        public string id_tour { get; set; }
+        public int? id_tour { get; set; }
 
         public int? id_user { get; set; }
 
         public DateTime? createDate { get; set; }
+
+        public bool? isAsign { get; set; }
 
         public virtual Tour Tour { get; set; }
 

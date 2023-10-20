@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div id="user-id" data-user-id="@Session["ID"]"></div>
+
+<section class="breadcrumbs-custom-inset">
+    <div class="breadcrumbs-custom context-dark bg-overlay-60">
+        <div class="container">
+            <h2 class="breadcrumbs-custom-title">Welcome, @Session["User"]</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active">Cart</li>
+            </ul>
+        </div>
+        <div class="box-position" style="background-image: url(/Assets/images/wallhaven-7pl713_1920x500.png);"></div>
+    </div>
+</section>
+
+<section class="breadcrumbs-custom-inset">
+    <div class="container">
+        <h3 style="padding: 30px">Danh sách tour đã thêm vào giỏ hàng</h3>
+        <table class="table table-bordered table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th class="col-md-1">Mã tour</th>
+                    <th class="col-md-1">Tên tour</th>
+                    <th class="col-md-1">Giá tour</th>
+                    <th class="col-md-1">Nơi đi</th>
+                    <th class="col-md-1">Nơi đến</th>
+                    <th class="col-md-2">Ngày đi</th>
+                    <th class="col-md-1">Số lượng tour</th>
+                    <th class="col-md-1">Đặt tour</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    // Lấy dữ liệu từ localStorage
+    var data = JSON.parse(localStorage.getItem("Book"));
+
+    // Đảm bảo rằng data là một mảng
+    if (Array.isArray(data)) {
+        // Định vị <tbody> trong bảng
+        var $tbody = document.querySelector("#myTable tbody");
+
+        // Xóa mọi dòng dữ liệu cũ trong <tbody>
+        $tbody.innerHTML = "";
+
+        // Duyệt qua mảng dữ liệu và thêm từng dòng vào <tbody>
+        data.forEach(function (tour) {
+
+            var row = "<tr>" +
+                "<td>" + tour.ma + "</td>" +
+                "<td>" + tour.ten + "</td>" +
+                "<td>" + tour.gia + "</td>" +
+                "<td>" + tour.noi_di + "</td>" +
+                "<td>" + tour.noi_den + "</td>" +
+                "<td>" + tour.ngay_di + "</td>" +
+                "<td>" +
+                "<div style='justify-content: space-between; font-size: 20px; color: white;'>" +
+                "<input  style='width: 50px; font-size:16px' type='number' id='quantityInput' name='quantity'>" +
+                "</div>" +
+                "</td>" +
+                "<td>" +
+                "<div style='justify-content: space-between; font-size: 20px; color: white;'>" +
+                "<a href='javascript:void(0)' class='btn btn-warning' style='width: 100px;' " +
+                "onclick='bookTour(" + tour.ma + ", " + tour.gia + ")'>" +
+                "Đặt lịch <i class='fa-sharp fa-solid fa-cart-shopping'></i>" +
+                "</a>" +
+                "</div>" +
+                "</td>" +
+
+                "</tr>";
+
+            $tbody.innerHTML += row;
+        });
+
+    }
+
+    function bookTour(tourId, price) {
+        var userId = document.getElementById('user-id').getAttribute('data-user-id');
+        var quantity = document.getElementById('quantityInput').value; // Lấy số lượng từ input
+        var inputElement = document.querySelector("input[name='quantity']");
+        if (!inputElement.value) {
+            alert("cần phải chọn quantity!");
+            window.location.href = "https://localhost:44363/Cart";
+        }else {
+            $.ajax({
+            url: '@Url.Action("CreateOrder", "Order")', // Đường dẫn tới Action xử lý đặt lịch
+            type: 'POST',
+            data: { id_tour: tourId,  price: price, id_user: userId, quantity: quantity },
+                success: function (response) {
+                    var data = JSON.parse(localStorage.getItem("Book")) || [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].ma === tourId) {
+                            data.splice(i, 1);
+                            break;
+                        }
+                    }
+                    localStorage.setItem("Book", JSON.stringify(data));
+                    window.location.href = "https://localhost:44363/Order/Index";
+                },
+            error: function () {
+                // Xử lý lỗi nếu có
+            }
+        });
+        }
+
+    }
+
+</script>
