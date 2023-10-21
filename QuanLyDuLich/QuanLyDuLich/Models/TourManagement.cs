@@ -16,9 +16,9 @@ namespace QuanLyDuLich.Models
 
         public int? id_user { get; set; }
 
-        public DateTime? createDate { get; set; }
+        public DateTime? departure_time { get; set; }
 
-        public bool? isAsign { get; set; }
+        public DateTime? createDate { get; set; }
 
         public virtual Tour Tour { get; set; }
 
