@@ -9,7 +9,6 @@ using System.Web.Mvc;
 using System.Web.Services.Description;
 using QuanLyDuLich.Areas.Admin.Service;
 using QuanLyDuLich.Models;
-using QuanLyDuLich.Service;
 
 namespace QuanLyDuLich.Areas.Admin.Controllers
 {

@@ -126,7 +126,6 @@ namespace QuanLyDuLich.Areas.Admin.Service
                         {
                             id_user = id,
                             id_tour = tourId,
-                            isAsign = false,
                             createDate = DateTime.Now,
                         };
                     
